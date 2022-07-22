@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "lint": "eslint . --ext .ts",
+    "dev": "nodemon src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,6 +23,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
-    "nodemon": "^2.0.19"
+    "mongoose": "^6.4.6",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1"
   }
 }
