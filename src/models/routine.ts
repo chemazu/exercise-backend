@@ -9,7 +9,16 @@ const ExerciseSchema = new mongoose.Schema({
     type: String,
   },
   exerciseSet: {
-    type: Array,
+    type: String,
+    required: [true, "Please enter exercise set"],
+  },
+  exerciseRep: {
+    type: String,
+    required: [true, "Please enter exercise rep range"],
+  },
+  exerciseRpe: {
+    type: String,
+    required: [true, "Please enter exercise intensity"],
   },
   exerciseNotes: {
     type: String,

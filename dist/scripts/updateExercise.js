@@ -18,7 +18,8 @@ const app = express();
 let updateExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let id = req.body.id;
-        let result = yield routine_1.default.updateOne({ _id: id }, { $set: { routineExercises: req.body.exercise } });
+        // let result = await Routine.updateOne({ _id: id }, { $set: { routineExercises: req.body.exercise } });
+        let result = yield routine_1.default.updateOne({ _id: id }, { $push: { routineExercises: req.body.exercise } });
         res.status(200).json({ status: "success", data: result });
     }
     catch (error) {
@@ -27,4 +28,5 @@ let updateExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.default = updateExercise;
 // updateMany({_id:5},{$set:{ skills:["Sales Tax"]}})
+// {$push:{"skills":"Sports"}}
 //# sourceMappingURL=updateExercise.js.map

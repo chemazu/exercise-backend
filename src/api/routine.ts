@@ -1,15 +1,18 @@
 import express from "express";
-import createExercise from "../scripts/createExercise";
-import createRoutine from "../scripts/createRoutine";
-import getRoutine from "../scripts/getRoutine";
-import updateExercise from "../scripts/updateExercise";
+import createRoutine from "../scripts/Routine/createRoutine";
+import getRoutine from "../scripts/Routine/getRoutine";
+import addExercise from "../scripts/Exercise/addExercise";
 
 let router = express.Router();
 
 router.post("/create", createRoutine);
 router.get("/get", getRoutine);
-router.get('/add-exercise',createExercise)
-router.get('/update-exercise',updateExercise)
+// router.get("/update", updateRoutine);
+// router.get("/delete", deleteRoutine);
+router.post('/add-exercise',addExercise)
+// router.put('/update-exercise',updateExercise)
+// router.delete('/delete-exercise',deleteExercise)
+
 
 
 

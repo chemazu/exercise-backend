@@ -1,5 +1,5 @@
 const express = require("express");
-import Routine from "../models/routine";
+import Routine from "../../models/routine";
 const app = express();
 
 let createRoutine = async (req, res) => {
