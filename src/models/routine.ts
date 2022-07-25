@@ -34,11 +34,12 @@ const RoutineSchema = new mongoose.Schema({
     type: String,
   },
   routineExercises: {
-    type: [ExerciseSchema],
+    type: [ExerciseSchema]
   },
   routineNotes: {
-    type: String,
+    type: String
   },
+  program: { type: String },
   createdAt: {
     type: Date,
     default: () => Date.now(),

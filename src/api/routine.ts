@@ -1,7 +1,8 @@
 import express from "express";
-import createRoutine from "../scripts/Routine/createRoutine";
-import getRoutine from "../scripts/Routine/getRoutine";
-import addExercise from "../scripts/Exercise/addExercise";
+import createRoutine from "../services/Routine/createRoutine";
+import getRoutine from "../services/Routine/getRoutine";
+import addExercise from "../services/Exercise/addExercise";
+import deleteExercise from "../services/Exercise/deleteExercise";
 
 let router = express.Router();
 
@@ -10,8 +11,7 @@ router.get("/get", getRoutine);
 // router.get("/update", updateRoutine);
 // router.get("/delete", deleteRoutine);
 router.post('/add-exercise',addExercise)
-// router.put('/update-exercise',updateExercise)
-// router.delete('/delete-exercise',deleteExercise)
+router.delete('/delete-exercise',deleteExercise)
 
 
 

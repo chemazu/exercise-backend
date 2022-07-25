@@ -4,14 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const createExercise_1 = __importDefault(require("../scripts/createExercise"));
-const createRoutine_1 = __importDefault(require("../scripts/createRoutine"));
-const getRoutine_1 = __importDefault(require("../scripts/getRoutine"));
-const updateExercise_1 = __importDefault(require("../scripts/updateExercise"));
+const createRoutine_1 = __importDefault(require("../scripts/Routine/createRoutine"));
+const getRoutine_1 = __importDefault(require("../scripts/Routine/getRoutine"));
+const addExercise_1 = __importDefault(require("../scripts/Exercise/addExercise"));
+const deleteExercise_1 = __importDefault(require("../scripts/Exercise/deleteExercise"));
 let router = express_1.default.Router();
 router.post("/create", createRoutine_1.default);
 router.get("/get", getRoutine_1.default);
-router.get('/add-exercise', createExercise_1.default);
-router.get('/update-exercise', updateExercise_1.default);
+// router.get("/update", updateRoutine);
+// router.get("/delete", deleteRoutine);
+router.post('/add-exercise', addExercise_1.default);
+// router.put('/update-exercise',updateExercise)
+router.delete('/delete-exercise', deleteExercise_1.default);
 exports.default = router;
 //# sourceMappingURL=routine.js.map
