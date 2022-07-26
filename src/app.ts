@@ -10,6 +10,7 @@ const app = express();
 const port = 4000;
 
 // clg('Hello World');
+
 app.use(express.json());
 config();
 mongoose.connect(process.env.MONGO_URI);
@@ -21,6 +22,9 @@ db.once("open", function () {
 });
 app.use("/api/routine", routine);
 app.use("/api/account", account);
+console.log(process.env.SMTP_USER);
+console.log(process.env.SMTP_USER);
+
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);

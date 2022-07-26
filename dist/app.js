@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = require("dotenv");
 const routine_1 = __importDefault(require("./api/routine"));
+const account_1 = __importDefault(require("./api/account"));
 const app = (0, express_1.default)();
 const port = 4000;
 // clg('Hello World');
@@ -19,6 +20,7 @@ db.once("open", function () {
     console.log("Connected successfully");
 });
 app.use("/api/routine", routine_1.default);
+app.use("/api/account", account_1.default);
 app.listen(port, () => {
     return console.log(`Express is listening at http://localhost:${port}`);
 });
