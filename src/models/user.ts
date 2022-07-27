@@ -1,5 +1,6 @@
 // age,sex,weight,height
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -14,13 +15,17 @@ const UserSchema = new mongoose.Schema({
     unique: true,
   },
   password: { type: String, required: true },
-  //   age,
-  //   dob,
+  routines: [{ type: Schema.Types.ObjectId, ref: "Routine" }],
+  age: { type: String },
+  sex: { type: String },
+  weight: { type: String },
+  height: { type: String },
+
+  //   dob
   //   sex,
   //   weight,
   //   height,
 });
 const User = mongoose.model("User", UserSchema);
-
 
 export default User;

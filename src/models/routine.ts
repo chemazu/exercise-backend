@@ -1,29 +1,6 @@
 import mongoose from "mongoose";
-
-const ExerciseSchema = new mongoose.Schema({
-  exerciseName: {
-    type: String,
-    required: [true, "Please enter exercise name"],
-  },
-  exerciseDescription: {
-    type: String,
-  },
-  exerciseSet: {
-    type: String,
-    required: [true, "Please enter exercise set"],
-  },
-  exerciseRep: {
-    type: String,
-    required: [true, "Please enter exercise rep range"],
-  },
-  exerciseRpe: {
-    type: String,
-    required: [true, "Please enter exercise intensity"],
-  },
-  exerciseNotes: {
-    type: String,
-  },
-});
+import exercise from "./exercise";
+let Schema = mongoose.Schema;
 
 const RoutineSchema = new mongoose.Schema({
   routineName: {
@@ -33,11 +10,27 @@ const RoutineSchema = new mongoose.Schema({
   routineDescription: {
     type: String,
   },
-  routineExercises: {
-    type: [ExerciseSchema]
-  },
+  exercises: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Exercise",
+      required: [true, "Please enter exercise"],
+      routineSet: {
+        type: String,
+        required: [true, "Please enter exercise set"],
+      },
+      routineRep: {
+        type: String,
+        required: [true, "Please enter exercise rep range"],
+      },
+      routineRpe: {
+        type: String,
+        required: [true, "Please enter exercise intensity"],
+      },
+    },
+  ],
   routineNotes: {
-    type: String
+    type: String,
   },
   program: { type: String },
   createdAt: {

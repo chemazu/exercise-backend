@@ -3,8 +3,7 @@ import Routine from "../../models/routine";
 const app = express();
 
 let deleteExercise = async (req, res) => {
-  let { routineId, exercise } = req.body;
-  let { exerciseId } = exercise;
+  let { routineId, exerciseId } = req.body;
 
   try {
     let result = await Routine.updateOne(
