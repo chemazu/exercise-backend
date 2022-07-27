@@ -4,30 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const ExerciseSchema = new mongoose_1.default.Schema({
-    exerciseName: {
-        type: String,
-        required: [true, "Please enter exercise name"],
-    },
-    exerciseDescription: {
-        type: String,
-    },
-    exerciseSet: {
-        type: String,
-        required: [true, "Please enter exercise set"],
-    },
-    exerciseRep: {
-        type: String,
-        required: [true, "Please enter exercise rep range"],
-    },
-    exerciseRpe: {
-        type: String,
-        required: [true, "Please enter exercise intensity"],
-    },
-    exerciseNotes: {
-        type: String,
-    },
-});
+let Schema = mongoose_1.default.Schema;
 const RoutineSchema = new mongoose_1.default.Schema({
     routineName: {
         type: String,
@@ -36,11 +13,27 @@ const RoutineSchema = new mongoose_1.default.Schema({
     routineDescription: {
         type: String,
     },
-    routineExercises: {
-        type: [ExerciseSchema]
-    },
+    exercises: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Exercise",
+            required: [true, "Please enter exercise"],
+            routineSet: {
+                type: String,
+                required: [true, "Please enter exercise set"],
+            },
+            routineRep: {
+                type: String,
+                required: [true, "Please enter exercise rep range"],
+            },
+            routineRpe: {
+                type: String,
+                required: [true, "Please enter exercise intensity"],
+            },
+        },
+    ],
     routineNotes: {
-        type: String
+        type: String,
     },
     program: { type: String },
     createdAt: {

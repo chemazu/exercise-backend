@@ -3,23 +3,37 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExerciseSchema = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-exports.ExerciseSchema = new mongoose_1.default.Schema({
+const ExerciseSchema = new mongoose_1.default.Schema({
     exerciseName: {
         type: String,
-        required: [true, 'Please enter exercise name']
+        required: [true, "Please enter exercise name"],
     },
-    exerciseDescription: {
-        type: String
+    level: { type: String },
+    category: { type: String },
+    force: {
+        type: String,
     },
-    exerciseSet: {
-        type: Array
+    mechanic: {
+        type: String,
+    },
+    equipment: {
+        type: String,
+    },
+    primaryMuscles: {
+        type: [String],
+        required: [true, "Please enter exercise set"],
+    },
+    secondaryMuscles: {
+        type: [String],
+    },
+    instructions: {
+        type: [String],
+        required: [true, "Please enter exercise intensity"],
     },
     exerciseNotes: {
         type: String,
-    }
+    },
 });
-const Exercise = mongoose_1.default.model("Exercise", exports.ExerciseSchema);
-exports.default = Exercise;
+exports.default = mongoose_1.default.model("Exercise", ExerciseSchema);
 //# sourceMappingURL=exercise.js.map

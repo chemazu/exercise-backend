@@ -1,6 +1,4 @@
-const express = require("express");
 import Routine from "../../models/routine";
-const app = express();
 
 let deleteRoutine = async (req, res) => {
   let { routineId } = req.body;

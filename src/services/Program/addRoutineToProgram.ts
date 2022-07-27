@@ -1,6 +1,4 @@
-const express = require("express");
 import Program from "../../models/program";
-const app = express();
 
 let addRoutineToProgram = async (req, res) => {
   let { routineId , programId } = req.body;

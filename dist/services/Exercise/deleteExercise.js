@@ -16,8 +16,7 @@ const express = require("express");
 const routine_1 = __importDefault(require("../../models/routine"));
 const app = express();
 let deleteExercise = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let { routineId, exercise } = req.body;
-    let { exerciseId } = exercise;
+    let { routineId, exerciseId } = req.body;
     try {
         let result = yield routine_1.default.updateOne({ _id: routineId }, { $pull: { routineExercises: { _id: exerciseId } } });
         res.status(200).json({ status: "success", data: result });

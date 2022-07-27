@@ -12,9 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
 const routine_1 = __importDefault(require("../../models/routine"));
-const app = express();
 let createRoutine = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let { routineName } = req.body;
     const routine = new routine_1.default(req.body);

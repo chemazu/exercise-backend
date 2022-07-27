@@ -1,6 +1,4 @@
-const express = require("express");
 import Routine from "../../models/routine";
-const app = express();
 
 let getRoutine = async (req, res) => {
   try {

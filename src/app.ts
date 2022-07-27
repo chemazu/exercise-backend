@@ -5,15 +5,9 @@ import routine from "./api/routine";
 import account from "./api/account";
 import program from "./api/program";
 import exercise from "./api/exercise";
-
-
-
-import jwt from "jsonwebtoken";
-import bcrpyt from "bcrypt";
 const app = express();
 const port = 4000;
 
-// clg('Hello World');
 
 app.use(express.json());
 config();

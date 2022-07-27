@@ -8,9 +8,10 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = require("dotenv");
 const routine_1 = __importDefault(require("./api/routine"));
 const account_1 = __importDefault(require("./api/account"));
+const program_1 = __importDefault(require("./api/program"));
+const exercise_1 = __importDefault(require("./api/exercise"));
 const app = (0, express_1.default)();
 const port = 4000;
-// clg('Hello World');
 app.use(express_1.default.json());
 (0, dotenv_1.config)();
 mongoose_1.default.connect(process.env.MONGO_URI);
@@ -21,6 +22,10 @@ db.once("open", function () {
 });
 app.use("/api/routine", routine_1.default);
 app.use("/api/account", account_1.default);
+app.use("/api/program", program_1.default);
+app.use("/api/exercise", exercise_1.default);
+console.log(process.env.SMTP_USER);
+console.log(process.env.SMTP_USER);
 app.listen(port, () => {
     return console.log(`Express is listening at http://localhost:${port}`);
 });
