@@ -16,6 +16,7 @@ const express = require("express");
 const user_1 = __importDefault(require("../../models/user"));
 const app = express();
 const bcrypt = require("bcrypt");
+const handleJwt_1 = __importDefault(require("../../utils/handleJwt"));
 let register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // what do i need to register
     // username, password, email
@@ -24,12 +25,13 @@ let register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // password is hashed
     // create a user
     let { username, password, age, sex, weight, height } = req.body;
+    let token = (0, handleJwt_1.default)(username);
     const hashedPassword = yield bcrypt.hash(password, 10);
     const encryptedUser = Object.assign(Object.assign({}, req.body), { password: hashedPassword });
     const newUser = new user_1.default(encryptedUser);
     try {
         yield newUser.save();
-        res.status(201).send("User created");
+        res.status(201).send({ status: "Successs User Created", token: token });
     }
     catch (_a) {
         res.status(500).send();

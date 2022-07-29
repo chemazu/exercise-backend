@@ -9,11 +9,14 @@ const register_1 = __importDefault(require("../services/Account/register"));
 const resetPassword_1 = __importDefault(require("../services/Account/resetPassword"));
 const resetLink_1 = __importDefault(require("../services/Account/resetLink"));
 const getUser_1 = __importDefault(require("../services/Account/getUser"));
+const authenticateToken_1 = __importDefault(require("../services/Account/authenticateToken"));
 let router = express_1.default.Router();
 router.post("/register", register_1.default);
 router.post("/login", login_1.default);
 router.post("/reset-password", resetPassword_1.default);
 router.post("/reset-link/:userID/:token", resetLink_1.default);
 router.post("/user", getUser_1.default);
+router.post("authenticateToken", authenticateToken_1.default);
+// router.post("/generate-token", generateToken);
 exports.default = router;
 //# sourceMappingURL=account.js.map

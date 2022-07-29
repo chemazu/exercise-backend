@@ -5,12 +5,15 @@ import routine from "./api/routine";
 import account from "./api/account";
 import program from "./api/program";
 import exercise from "./api/exercise";
+import log from "./api/log";
+
+
 const app = express();
 const port = 4000;
 
-
 app.use(express.json());
 config();
+let egg ={ useNewUrlParser: true, useUnifiedTopology: true }
 mongoose.connect(process.env.MONGO_URI);
 
 const db = mongoose.connection;
@@ -22,10 +25,8 @@ app.use("/api/routine", routine);
 app.use("/api/account", account);
 app.use("/api/program", program);
 app.use("/api/exercise", exercise);
+app.use("/api/log", log);
 
-
-console.log(process.env.SMTP_USER);
-console.log(process.env.SMTP_USER);
 
 
 app.listen(port, () => {

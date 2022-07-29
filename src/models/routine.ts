@@ -29,9 +29,13 @@ const RoutineSchema = new mongoose.Schema({
       },
     },
   ],
+  stretches: {
+    type: Array,
+  },
   routineNotes: {
     type: String,
   },
+
   program: { type: String },
   createdAt: {
     type: Date,
