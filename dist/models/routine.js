@@ -32,6 +32,9 @@ const RoutineSchema = new mongoose_1.default.Schema({
             },
         },
     ],
+    stretches: {
+        type: Array,
+    },
     routineNotes: {
         type: String,
     },

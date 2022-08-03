@@ -17,7 +17,7 @@ const user_1 = __importDefault(require("../../models/user"));
 const app = (0, express_1.default)();
 const bcrypt = require("bcrypt");
 let login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield user_1.default.find({ username: req.body.username });
+    const user = yield user_1.default.find({ email: req.body.email });
     if (user == null) {
         return res.status(400).send("Cannot find user");
     }

@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { config } from "dotenv";
+import cors from "cors";
 import routine from "./api/routine";
 import account from "./api/account";
 import program from "./api/program";
@@ -10,10 +11,10 @@ import log from "./api/log";
 
 const app = express();
 const port = 4000;
-
+app.use(cors());
 app.use(express.json());
+
 config();
-let egg ={ useNewUrlParser: true, useUnifiedTopology: true }
 mongoose.connect(process.env.MONGO_URI);
 
 const db = mongoose.connection;

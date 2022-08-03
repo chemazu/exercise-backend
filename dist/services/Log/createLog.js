@@ -12,15 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const routine_1 = __importDefault(require("../../models/routine"));
+const log_1 = __importDefault(require("../../models/log"));
 const joi_1 = __importDefault(require("joi"));
-const app = express();
-let addExerciseToRoutine = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let { routineId, exerciseId } = req.body;
-    let schema = joi_1.default.object({
-        routineId: joi_1.default.string().required(),
-        exerciseId: joi_1.default.string().required(),
+const createLog = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const schema = joi_1.default.object({
+        userId: joi_1.default.string().required(),
+        RoutineId: joi_1.default.string().required(),
+        RoutineSummary: joi_1.default.string().required(),
+        exercises: joi_1.default.array()
+            .items(joi_1.default.object({
+            exerciseId: joi_1.default.string().required(),
+            exerciseName: joi_1.default.string().required(),
+            sets: joi_1.default.number().required(),
+            reps: joi_1.default.number().required(),
+            weight: joi_1.default.number().required(),
+            rpe: joi_1.default.number(),
+            nextgoal: joi_1.default.string(),
+        }))
+            .required(),
     });
     const { error } = schema.validate(req.body);
     if (error) {
@@ -28,28 +37,13 @@ let addExerciseToRoutine = (req, res) => __awaiter(void 0, void 0, void 0, funct
             .status(400)
             .json({ status: "validation error", error: error.details[0].message });
     }
-    // check if routine exisits
-    let routine = yield routine_1.default.findById(routineId);
-    console.log(routine);
-    if (!routine) {
-        return res
-            .status(400)
-            .json({ status: "error", error: "Routine does not exist" });
-    }
     try {
-        let result = yield routine_1.default.updateOne(
-        // check if routine exists
-        { _id: routineId }, { $push: { exercises: exerciseId } });
-        if (result.acknowledged) {
-            res.status(200).json({ status: "success", data: result });
-        }
-        else {
-            res.status(400).json({ status: "failed", data: result });
-        }
+        let result = yield log_1.default.create(req.body);
+        res.status(200).json({ status: "success", data: result });
     }
     catch (error) {
         res.status(400).json({ status: "error", error: `${error.message} ` });
     }
 });
-exports.default = addExerciseToRoutine;
-//# sourceMappingURL=addExerciseToRoutine.js.map
+exports.default = createLog;
+//# sourceMappingURL=createLog.js.map

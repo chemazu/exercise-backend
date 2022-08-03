@@ -12,29 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
 const user_1 = __importDefault(require("../../models/user"));
-const app = express();
+const joi_1 = __importDefault(require("joi"));
 const bcrypt = require("bcrypt");
 const handleJwt_1 = __importDefault(require("../../utils/handleJwt"));
 let register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // what do i need to register
-    // username, password, email
-    // username is unique
-    // email is unique
-    // password is hashed
-    // create a user
-    let { username, password, age, sex, weight, height } = req.body;
-    let token = (0, handleJwt_1.default)(username);
-    const hashedPassword = yield bcrypt.hash(password, 10);
-    const encryptedUser = Object.assign(Object.assign({}, req.body), { password: hashedPassword });
-    const newUser = new user_1.default(encryptedUser);
+    const schema = joi_1.default.object({
+        username: joi_1.default.string().required(),
+        email: joi_1.default.string().email().required(),
+        password: joi_1.default.string().required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
     try {
+        let { username, password } = req.body;
+        let token = (0, handleJwt_1.default)(username);
+        const hashedPassword = yield bcrypt.hash(password, 10);
+        const encryptedUser = Object.assign(Object.assign({}, req.body), { password: hashedPassword });
+        const newUser = new user_1.default(encryptedUser);
         yield newUser.save();
         res.status(201).send({ status: "Successs User Created", token: token });
     }
-    catch (_a) {
-        res.status(500).send();
+    catch (error) {
+        res.status(500).send(error.message);
     }
 });
 exports.default = register;

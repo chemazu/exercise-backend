@@ -4,7 +4,7 @@ const app = express();
 const bcrypt = require("bcrypt");
 
 let login = async (req, res) => {
-  const user = await User.find({ username: req.body.username });
+  const user = await User.find({ email: req.body.email });
 
   if (user == null) {
     return res.status(400).send("Cannot find user");

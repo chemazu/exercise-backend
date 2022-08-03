@@ -28,7 +28,6 @@
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
     "joi": "^17.6.0",
-    "joigoose": "^8.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.6",
     "mongoose-dummy": "^1.0.8",

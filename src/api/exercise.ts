@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post("/create", createExercise);
 // router.get("/exercise", createExercise);
-router.post("/createbulk", createBulkExercise); 
+// router.post("/createbulk", createBulkExercise); 
 router.get("/filter-exercises", filterExercises); 
 router.get("/exercises",authenticateToken, getExercises); 
 
