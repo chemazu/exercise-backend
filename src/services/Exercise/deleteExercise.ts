@@ -8,7 +8,7 @@ let deleteExercise = async (req, res) => {
   try {
     let result = await Routine.updateOne(
       { _id: routineId },
-      { $pull: { routineExercises: { _id: exerciseId } } }
+      // { $pull: { routineExercises: { _id: exerciseId } } }
     );
     res.status(200).json({ status: "success", data: result });
   } catch (error) {

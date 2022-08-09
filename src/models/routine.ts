@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import exercise from "./exercise";
 let Schema = mongoose.Schema;
 
 const RoutineSchema = new mongoose.Schema({
@@ -10,28 +9,30 @@ const RoutineSchema = new mongoose.Schema({
   routineDescription: {
     type: String,
   },
-  exercises: [
+  routineExercises: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Exercise",
-      required: [true, "Please enter exercise"],
-      routineSet: {
-        type: String,
+      exerciseId: { type: Schema.Types.ObjectId, ref: "Exercise" },
+      exerciseSet: {
+        type: Number,
         required: [true, "Please enter exercise set"],
       },
-      routineRep: {
+      exerciseRep: {
         type: String,
         required: [true, "Please enter exercise rep range"],
       },
-      routineRpe: {
-        type: String,
+      exerciseRpe: {
+        type: Number,
         required: [true, "Please enter exercise intensity"],
+      },
+      exerciseNotes: {
+        type: String,
+      },
+      setId: {
+        type: String,
       },
     },
   ],
-  stretches: {
-    type: Array,
-  },
+  stretches: [{ type: Schema.Types.ObjectId, ref: "Exercise" }],
   routineNotes: {
     type: String,
   },
@@ -44,3 +45,6 @@ const RoutineSchema = new mongoose.Schema({
 });
 const Routine = mongoose.model("Routine", RoutineSchema);
 export default Routine;
+
+const SuperSet = mongoose.model("SuperSet", RoutineSchema);
+export { SuperSet };

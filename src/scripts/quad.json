@@ -1,0 +1,13 @@
+{
+  "routineName": "Quad Day",
+  "routineDescription": "Quadricep training",
+  "routineExercises": [
+    {
+      "exerciseId": "62e472ffd6c2d8ba15ab5a96",
+      "exerciseSet": 3,
+      "exerciseRep": "8-12",
+      "exerciseRpe": 7
+    }
+  ],
+  "stretches": ["62e472ffd6c2d8ba15ab5a7b"]
+}
